@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobe Creative Cloud — Complete Master Suite (2026)</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #141414;
+      color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .installer-card {
+      background-color: #1f1f1f;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 32px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .logo {
+      background-color: #fa0f00;
+      color: white;
+      font-weight: 900;
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .subtext {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .package-list {
+      background-color: #161616;
+      border: 1px solid #2c2c2c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #ccc;
+      margin-bottom: 16px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .package-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+      border-bottom: 1px solid #222;
+      padding-bottom: 4px;
+    }
+    .package-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .package-size {
+      color: #777;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .storage-summary {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ddd;
+      background-color: #252525;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    #startBtn {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      background-color: #1473e6;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #startBtn:hover {
+      background-color: #0d66d0;
+    }
+    #progressArea {
+      display: none;
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background-color: #333;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    #progressFill {
+      width: 0%;
+      height: 100%;
+      background-color: #1473e6;
+      transition: width 0.05s linear;
+    }
+    #statusText {
+      font-family: monospace;
+      font-size: 12px;
+      color: #aaa;
+    }
+    #prankMsg {
+      display: none;
+      margin-top: 20px;
+      color: #ff4d4d;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="installer-card">
+    <div class="header">
+      <div class="logo">A</div>
+      <div>
+        <h1>Creative Cloud Complete Master Suite</h1>
+        <div style="font-size: 12px; color: #888;">Pre-Activated Offline Bundle • v2026.4</div>
+      </div>
+    </div>
+
+    <div class="subtext">
+      Your direct installer package is verified and ready. Click below to unpack and install all 6 Creative Cloud applications.
+    </div>
+
+    <div class="package-list">
+      <div class="package-item"><span>✓ Adobe Photoshop 2026</span><span class="package-size">4.82 GB</span></div>
+      <div class="package-item"><span>✓ Adobe Premiere Pro 2026</span><span class="package-size">8.40 GB</span></div>
+      <div class="package-item"><span>✓ Adobe After Effects 2026</span><span class="package-size">6.15 GB</span></div>
+      <div class="package-item"><span>✓ Adobe Illustrator 2026</span><span class="package-size">3.90 GB</span></div>
+      <div class="package-item"><span>✓ Adobe InDesign 2026</span><span class="package-size">2.65 GB</span></div>
+      <div class="package-item"><span>✓ Adobe Lightroom Classic</span><span class="package-size">2.95 GB</span></div>
+    </div>
+
+    <div class="storage-summary">
+      <span>Total Required Space:</span>
+      <span>28.87 GB (119,024,280 Assets)</span>
+    </div>
+
+    <button id="startBtn">Download & Install All (28.87 GB)</button>
+
+    <div id="progressArea">
+      <div class="progress-bar-bg">
+        <div id="progressFill"></div>
+      </div>
+      <div id="statusText">Downloading 1 : 119024280 Assets</div>
+    </div>
+
+    <div id="prankMsg">Download Complete! Just kidding, you got pranked 😜</div>
+  </div>
+
+  <audio id="prankAudio" src="Spongebob laughing menacingly.mp3" preload="auto" loop></audio>
+
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const progressArea = document.getElementById("progressArea");
+    const progressFill = document.getElementById("progressFill");
+    const statusText = document.getElementById("statusText");
+    const prankMsg = document.getElementById("prankMsg");
+    const audio = document.getElementById("prankAudio");
+
+    startBtn.addEventListener("click", () => {
+      startBtn.style.display = "none";
+      progressArea.style.display = "block";
+
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }).catch(() => {});
+
+      let i = 1;
+      const max = 119024280;
+
+      const interval = setInterval(() => {
+        if (i <= max) {
+          const percent = (i / max) * 100;
+          progressFill.style.width = percent + "%";
+          statusText.textContent = `Downloading ${i} : 100000000 Assets (${percent.toFixed(2)}%)`;
+          i += 12345.67;
+        } else {
+          clearInterval(interval);
+          progressFill.style.width = "100%";
+          statusText.textContent = `Downloading 100000000 : 100000000 Assets (100.00%)`;
+          audio.volume = 1.0;
+          audio.play();
+          prankMsg.style.display = "block";
+        }
+      }, 20);
+    });
+  </script>
+
+</body>
+</html>
