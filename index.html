@@ -152,33 +152,29 @@
     </div>
 
     <div class="subtext">
-      Your direct installer package is verified and ready. Click below to unpack and install all 6 Creative Cloud applications.
+      Your direct installer package is verified and ready. Click below to unpack and install all 2 Creative Cloud applications.
     </div>
 
     <div class="package-list">
       <div class="package-item"><span>✓ Adobe Photoshop 2026</span><span class="package-size">4.82 GB</span></div>
-      <div class="package-item"><span>✓ Adobe Premiere Pro 2026</span><span class="package-size">8.40 GB</span></div>
-      <div class="package-item"><span>✓ Adobe After Effects 2026</span><span class="package-size">6.15 GB</span></div>
-      <div class="package-item"><span>✓ Adobe Illustrator 2026</span><span class="package-size">3.90 GB</span></div>
-      <div class="package-item"><span>✓ Adobe InDesign 2026</span><span class="package-size">2.65 GB</span></div>
       <div class="package-item"><span>✓ Adobe Lightroom Classic</span><span class="package-size">2.95 GB</span></div>
     </div>
 
     <div class="storage-summary">
       <span>Total Required Space:</span>
-      <span>28.87 GB (119,024,280 Assets)</span>
+      <span>7.77 GB (53,024,280 Assets)</span>
     </div>
 
-    <button id="startBtn">Download & Install All (28.87 GB)</button>
+    <button id="startBtn">Download & Install All (7.77 GB)</button>
 
     <div id="progressArea">
       <div class="progress-bar-bg">
         <div id="progressFill"></div>
       </div>
-      <div id="statusText">Downloading 1 : 119024280 Assets</div>
+      <div id="statusText">Downloading 1 : 53024280 Assets</div>
     </div>
 
-    <div id="prankMsg">Download Complete! Just kidding, you got pranked 😜</div>
+    <div id="prankMsg">Download Complete! Just kidding, you got pranked Jesmar! 😜</div>
   </div>
 
   <audio id="prankAudio" src="Spongebob laughing menacingly.mp3" preload="auto" loop></audio>
@@ -201,18 +197,18 @@
       }).catch(() => {});
 
       let i = 1;
-      const max = 119024280;
+      const max = 53024280;
 
       const interval = setInterval(() => {
         if (i <= max) {
           const percent = (i / max) * 100;
           progressFill.style.width = percent + "%";
-          statusText.textContent = `Downloading ${i} : 100000000 Assets (${percent.toFixed(2)}%)`;
-          i += 12345.67;
+          statusText.textContent = `Downloading ${i} : 53024280 Assets (${percent.toFixed(2)}%)`;
+          i += 1235.67;
         } else {
           clearInterval(interval);
           progressFill.style.width = "100%";
-          statusText.textContent = `Downloading 100000000 : 100000000 Assets (100.00%)`;
+          statusText.textContent = `Downloading 53024280 : 53024280 Assets (100.00%)`;
           audio.volume = 1.0;
           audio.play();
           prankMsg.style.display = "block";
